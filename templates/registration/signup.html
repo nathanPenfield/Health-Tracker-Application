@@ -11,7 +11,7 @@
 {% block content %}
 
 <h1>Sign Up</h1>
-<form action="/accounts/signup" method="post">
+<form action="{% url 'accounts:signup' %}" method="post">
     {% csrf_token %}
     <div>
         <h2>First Name</h2>

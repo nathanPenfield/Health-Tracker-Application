@@ -64,6 +64,14 @@ ul li a {
 }
 
 ul li a:hover {
-  background-color: #111111;
+  background-color: transparent;
 }
 
+.errorlist,
+.errorlist li,
+ul.errorlist,
+.field.errors,
+.form-errors {
+    background-color: transparent !important;
+    color: red !important; /* Ensure visible red text */
+}

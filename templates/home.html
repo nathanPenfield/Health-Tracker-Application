@@ -5,6 +5,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+<br>
 Hi {{ user.username }}!
 <p><a href="{% url 'password_change' %}">Password Change</a></p> <!-- Password Change Button. still working on this feature -->
 <form action="{% url 'logout' %}" method="post">
@@ -13,8 +14,8 @@ Hi {{ user.username }}!
 </form>
 {% else %}
 <p>You are not logged in</p>
-<p><a href="{% url 'password_reset' %}">Password Reset</a></p>
-<a href="{% url 'login' %}">Log In</a>
-<p><a href="{% url 'accounts:signup' %}">Sign Up</a></p>
+<button type="button" class="button" onclick="window.location.href='{% url 'password_reset' %}'">Password Reset</button>
+<button type="button" class="button" onclick="window.location.href='{% url 'login' %}'">Log In</button>
+<button type="button" class="button" onclick="window.location.href='{% url 'accounts:signup' %}'">Sign Up</button>
 {% endif %}
 {% endblock %}

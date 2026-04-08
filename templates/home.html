@@ -24,12 +24,19 @@ Hi {{ user.username }}!
 
   {% for log in logs %}
     <div class="log-entry">
-      <p><strong>{{ log.title }}</strong></p>
-      <p>{{ log.content }}</p>
-      <small>{{ log.created_at }}</small>
+      <p><strong>{{ log.name }}</strong></p>
+      <p>Dosage: {{ log.dosage }}</p>
+      <p>Frequency: {{log.frequency}}</p>
+      <p>Start Date: {{log.start_date}}</p>
+
+      {% if log.notes %}
+      <p>Notes: {{log.notes}}</p>
+      {% endif %}
+
+      <small>Added: {{ log.created_at }}</small>
     </div>
   {% empty %}
-    <p>No logs yet.</p>
+    <p>No medication yet.</p>
   {% endfor %}
 </div>
 {% endblock %}

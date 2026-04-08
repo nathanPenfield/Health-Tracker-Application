@@ -18,4 +18,25 @@ Hi {{ user.username }}!
 <button type="button" class="button" onclick="window.location.href='{% url 'login' %}'">Log In</button>
 <button type="button" class="button" onclick="window.location.href='{% url 'accounts:signup' %}'">Sign Up</button>
 {% endif %}
+
+<div class="log-window">
+  <h2>Medication List</h2>
+
+  {% for log in logs %}
+    <div class="log-entry">
+      <p><strong>{{ log.name }}</strong></p>
+      <p>Dosage: {{ log.dosage }}</p>
+      <p>Frequency: {{log.frequency}}</p>
+      <p>Start Date: {{log.start_date}}</p>
+
+      {% if log.notes %}
+      <p>Notes: {{log.notes}}</p>
+      {% endif %}
+
+      <small>Added: {{ log.created_at }}</small>
+    </div>
+  {% empty %}
+    <p>No medication yet.</p>
+  {% endfor %}
+</div>
 {% endblock %}

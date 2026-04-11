@@ -1,24 +1,22 @@
 from django.shortcuts import render, redirect
-from .models import Medication
+from django.contrib.auth.decorators import login_required
 from .forms import MedicationForm
 from django.http import HttpRequest, HttpResponse
 
 
+@login_required
 def MedicationView(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = MedicationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            medication = form.save(commit=False)
+            medication.user = request.user
+            medication.save()
             return redirect("/")
     else:
         form = MedicationForm()
 
     return render(request, "medication_entry/entry.html", {"form": form})
-
-    ## what is this doing idk
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
     
 """
 class MedicationListView(LoginRequiredMixin, ListView):

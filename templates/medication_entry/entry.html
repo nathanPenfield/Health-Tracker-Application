@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Medication Entry{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/entry.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h2>Enter Your Medication Information</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="form-pair">
+        <div class="form-description">Medication Name</div>
+        {{ form.name }}
+        {{ form.name.errors }}
+    </div>
+    <div class="form-pair">
+        <div class="form-description">Dosage</div>
+        {{ form.dosage }}
+        {{ form.dosage.errors }}
+    </div>
+    <div class="form-pair">
+        <div class="form-description">Frequency</div>
+        {{ form.frequency }}
+        {{ form.frequency.errors }}
+    </div>
+    <div class="form-pair">
+        <div class="form-description">Start Date</div>
+        {{ form.start_date }}
+        {{ form.start_date.errors }}
+    </div>
+    <div class="form-pair">
+        <div class="form-description">Notes</div>
+        {{ form.notes }}
+        {{ form.notes.errors }}
+    </div>
+    <button class="submit-button"type="submit">Save</button>
+</form>
+
+
+{% endblock %}

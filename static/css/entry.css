@@ -1,0 +1,52 @@
+h2{
+    font-size:32px;
+    color:#333333;
+    width:600px;
+    text-align:center;
+    position:absolute;
+    left:calc(50% - 300px);
+    top:75px;
+}
+form{
+    position:absolute;
+    left:calc(50% - 300px);
+    top:180px;
+    background-color: #333333;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding-top:1.5rem;
+    padding-bottom:1.5rem;
+    font-size:24px;
+    width:600px;
+    border-radius:10px;
+}
+.form-pair{
+    width:450px;
+    margin-bottom:1rem;
+}
+input{
+    padding:0;
+    border:none;
+    height:20px;
+}
+input[type="text"]{
+    width:450px;
+}
+textarea{
+    width:450px;
+    height:40px;
+    margin-top:5px;
+}
+.form-description{
+    color:white;
+}
+.submit-button{
+    width:100px;
+    height:40px;
+    border-radius:10px;
+    border:none;
+    background-color:white;
+    color:black;
+}

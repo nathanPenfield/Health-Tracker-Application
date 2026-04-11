@@ -6,5 +6,9 @@ class MedicationForm(forms.ModelForm):
         model = Medication
         fields = ['name', 'dosage', 'frequency', 'start_date', 'notes']
         widgets = {
-            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'name': forms.TextInput(attrs={'class': 'form-field'}),
+            'dosage': forms.TextInput(attrs={'class': 'form-field'}),
+            'frequency': forms.TextInput(attrs={'class': 'form-field'}),
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-field'}),
+            'notes': forms.Textarea(attrs={'class': 'form-field'}),
         }

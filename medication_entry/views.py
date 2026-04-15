@@ -1,18 +1,24 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, ListView
-from .models import Medication
+from django.contrib.auth.decorators import login_required
 from .forms import MedicationForm
+from django.http import HttpRequest, HttpResponse
 
-class MedicationCreateView(LoginRequiredMixin, CreateView):
-    model = Medication
-    form_class = MedicationForm
-    template_name = 'medication_entry/medication_form.html'
+
+@login_required
+def MedicationView(request: HttpRequest) -> HttpResponse:
+    if request.method == "POST":
+        form = MedicationForm(request.POST)
+        if form.is_valid():
+            medication = form.save(commit=False)
+            medication.user = request.user
+            medication.save()
+            return redirect("/")
+    else:
+        form = MedicationForm()
+
+    return render(request, "medication_entry/entry.html", {"form": form})
     
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
+"""
 class MedicationListView(LoginRequiredMixin, ListView):
     model = Medication
     template_name = 'medication_entry/medication_list.html'
@@ -20,3 +26,4 @@ class MedicationListView(LoginRequiredMixin, ListView):
     
     def get_queryset(self):
         return Medication.objects.filter(user=self.request.user)
+"""

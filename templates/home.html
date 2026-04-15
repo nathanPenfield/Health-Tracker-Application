@@ -22,7 +22,7 @@ Hi {{ user.username }}!
 <div class="log-window">
   <h2>Medication List</h2>
 
-  {% for log in logs %}
+  {% for log in medications %}
     <div class="log-entry">
       <p><strong>{{ log.name }}</strong></p>
       <p>Dosage: {{ log.dosage }}</p>

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Medication List{% endblock %}
+
+{% block content %}
+    <h2>Your Medications</h2>
+
+    {% if medications %}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Dosage</th>
+                <th>Frequency</th>
+                <th>Start Date</th>
+                <th>Refills Left</th>
+            </tr>
+
+            {% for med in medications %}
+                <tr>
+                    <td>{{ med.name }}</td>
+                    <td>{{ med.dosage }}</td>
+                    <td>{{ med.frequency }}</td>
+                    <td>{{ med.start_date }}</td>
+                    <td>{{ med.refill }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No medications yet.</p>
+    {% endif %}
+{% endblock %}

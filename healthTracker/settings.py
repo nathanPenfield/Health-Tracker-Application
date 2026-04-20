@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'medication_entry',
+    'symptom_log',
 ]
 
 MIDDLEWARE = [

@@ -6,7 +6,7 @@
 {% block content %}
 {% if user.is_authenticated %}
 <br>
-Hi {{ user.username }}!
+Hi {{ user.firstName }}!
 <p><a href="{% url 'password_change' %}">Password Change</a></p> <!-- Password Change Button. still working on this feature -->
 <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}

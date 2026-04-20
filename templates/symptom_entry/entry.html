@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Symptom Entry{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/entry.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sympentry.css' %}">
+{% endblock %}
+{% block content %}
+<div class="entry-container">
+<h2>Enter Your Symptom Information</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="form-pair">
+        <div class="form-description">Symptom Name</div>
+        {{ form.name }}
+    </div>
+    <div class="form-pair">
+        <div class="form-description">Severity</div>
+        {{ form.severity }}
+    </div>
+    <div class="form-pair">
+        <div class="form-description">Date</div>
+        {{ form.date }}
+    </div>
+    <div class="form-pair">
+        <div class="form-description">Notes</div>
+        {{ form.notes }}
+    </div>
+    <button class="submit-button" type="submit">Log Symptom</button>
+</form>
+
+<!-- Symptoms List below -->
+<div class="symptoms-list">
+    {% if symptoms %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Severity</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for symptom in symptoms %}
+                    <tr>
+                        <td>{{ symptom.name }}</td>
+                        <td><span class="severity-{{ symptom.severity|lower }}">{{ symptom.get_severity_display }}</span></td>
+                        <td>{{ symptom.date }}</td>
+                        <td>{{ symptom.notes|default:"No notes" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-data">No symptoms logged yet. Add one above!</p>
+    {% endif %}
+</div>
+</div>
+{% endblock %}

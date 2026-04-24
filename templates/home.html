@@ -19,24 +19,30 @@ Hi {{ user.firstName }}!
 <button type="button" class="button" onclick="window.location.href='{% url 'accounts:signup' %}'">Sign Up</button>
 {% endif %}
 
-<div class="log-window">
-  <h2>Medication List</h2>
+{% if user.is_authenticated %}
 
-  {% for log in medications %}
-    <div class="log-entry">
-      <p><strong>{{ log.name }}</strong></p>
-      <p>Dosage: {{ log.dosage }}</p>
-      <p>Frequency: {{log.frequency}}</p>
-      <p>Start Date: {{log.start_date}}</p>
+<div class="medication-window">
+    <h3>Your Medications</h3>
 
-      {% if log.notes %}
-      <p>Notes: {{log.notes}}</p>
-      {% endif %}
+{% if medications %}
+    {% for med in medications %}
+        <div class="medication-item">
+            <strong>{{ med.name }}</strong><br>
+            Dosage: {{ med.dosage }}<br>
+            Frequency: {{ med.frequency }}<br>
+            Refills: {{ med.refill }}
+        </div>
+        <hr>
+    {% endfor %}
+{% else %}
+    <p>No medications yet.</p>
+{% endif %}
 
-      <small>Added: {{ log.created_at }}</small>
-    </div>
-  {% empty %}
-    <p>No medication yet.</p>
-  {% endfor %}
+<a class="medication-link" href="{% url 'medication_entry:medication_list' %}">
+    View Full List
+</a>
 </div>
+
+{% endif %}
+
 {% endblock %}

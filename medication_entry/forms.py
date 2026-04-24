@@ -11,5 +11,5 @@ class MedicationForm(forms.ModelForm):
             'frequency': forms.TextInput(attrs={'class': 'form-field'}),
             'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-field'}),
             'notes': forms.Textarea(attrs={'class': 'form-field'}),
-            'refill': forms.NumberInput(attrs={'class': 'form-feild', 'min': 0})
+            'refill': forms.NumberInput(attrs={'class': 'form-field', 'min': 0})
         }

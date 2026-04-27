@@ -8,6 +8,7 @@ class Medication(models.Model):
     frequency = models.CharField(max_length=50)
     start_date = models.DateField()
     notes = models.TextField(blank=True)
+    refill = models.PositiveIntegerField(default=0)
 
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import MedicationForm
 from django.http import HttpRequest, HttpResponse
-
+from .models import Medication
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 @login_required
 def MedicationView(request: HttpRequest) -> HttpResponse:
@@ -18,7 +20,6 @@ def MedicationView(request: HttpRequest) -> HttpResponse:
 
     return render(request, "medication_entry/entry.html", {"form": form})
     
-"""
 class MedicationListView(LoginRequiredMixin, ListView):
     model = Medication
     template_name = 'medication_entry/medication_list.html'
@@ -26,4 +27,7 @@ class MedicationListView(LoginRequiredMixin, ListView):
     
     def get_queryset(self):
         return Medication.objects.filter(user=self.request.user)
-"""
+
+def home(request):
+    meds = Medication.objects.filter(user=request.user) if request.user.is_authenticated else[]
+    return render(request, 'home.html', {'medications': meds})

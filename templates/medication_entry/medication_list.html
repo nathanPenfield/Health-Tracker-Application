@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Medication List{% endblock %}
+
+{% block css %} 
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% if medications %}
+{% for med in medications %} <div> <h3>{{ med.name }}</h3>
+
+```
+        <p><strong>Dosage:</strong> {{ med.dosage }}</p>
+        <p><strong>Frequency:</strong> {{ med.frequency }}</p>
+        <p><strong>Start Date:</strong> {{ med.start_date }}</p>
+        <p><strong>Refills Left:</strong> {{ med.refill }}</p>
+
+        {% if med.notes %}
+            <p><strong>Notes:</strong> {{ med.notes }}</p>
+        {% endif %}
+    </div>
+
+    <hr>
+{% endfor %}
+```
+
+{% else %} 
+<p>No Medications Yet.</p>
+{% endif %}
+
+{% endblock %}

@@ -13,6 +13,7 @@ def MedicationView(request: HttpRequest) -> HttpResponse:
         if form.is_valid():
             medication = form.save(commit=False)
             medication.user = request.user
+            medication.times = form.cleaned_data['times']
             medication.save()
             return redirect("/")
     else:

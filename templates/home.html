@@ -27,9 +27,16 @@ Hi {{ user.firstName }}!
     {% for med in meds %}
         <div class="medication-item">
             <strong>{{ med.name }}</strong><br>
-            Dosage: {{ med.dosage }}<br>
-            Frequency: {{ med.frequency }}<br>
+            Dosage: {{ med.dosage_mg }}mg<br>
+            Times: {% if med.times %}{{ med.times|join:", " }}{% else %}No times set{% endif %}<br>
+            Start Date: {{ med.start_date }}<br>
+            {% if med.end_date %}
+                End Date: {{ med.end_date }}<br>
+            {% endif %}
             Refills: {{ med.refill }}
+            {% if med.notes %}
+                <br>Notes: {{ med.notes }}
+            {% endif %}
         </div>
         <hr>
     {% endfor %}

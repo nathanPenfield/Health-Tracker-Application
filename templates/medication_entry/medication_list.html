@@ -12,9 +12,12 @@
 
 {% if medications %}
 {% for med in medications %} <div> <h3>{{ med.name }}</h3>
-        <p><strong>Dosage:</strong> {{ med.dosage }}</p>
-        <p><strong>Frequency:</strong> {{ med.frequency }}</p>
+        <p><strong>Dosage:</strong> {{ med.dosage_mg }}mg</p>
+        <p><strong>Times:</strong> {% if med.times %}{{ med.times|join:", " }}{% else %}No times set{% endif %}</p>
         <p><strong>Start Date:</strong> {{ med.start_date }}</p>
+        {% if med.end_date %}
+            <p><strong>End Date:</strong> {{ med.end_date }}</p>
+        {% endif %}
         <p><strong>Refills Left:</strong> {{ med.refill }}</p>
 
         {% if med.notes %}

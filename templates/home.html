@@ -5,6 +5,16 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+{% if notifications %}
+<div class="medNotification">
+    <h3>Medications Alerts:</h3>
+    <ul class="alert-ul">
+    {% for notification in notifications %}
+        <li class="alert-li">{{ notification }}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
 <br>
 Hi {{ user.firstName }}!
 <form action="{% url 'logout' %}" method="post">

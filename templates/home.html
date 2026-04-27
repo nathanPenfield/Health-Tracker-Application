@@ -7,7 +7,6 @@
 {% if user.is_authenticated %}
 <br>
 Hi {{ user.firstName }}!
-<p><a href="{% url 'password_change' %}">Password Change</a></p> <!-- Password Change Button. still working on this feature -->
 <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
     <button type="submit">Log Out</button>
@@ -24,8 +23,8 @@ Hi {{ user.firstName }}!
 <div class="medication-window">
     <h3>Your Medications</h3>
 
-{% if medications %}
-    {% for med in medications %}
+{% if meds %}
+    {% for med in meds %}
         <div class="medication-item">
             <strong>{{ med.name }}</strong><br>
             Dosage: {{ med.dosage }}<br>
@@ -35,12 +34,9 @@ Hi {{ user.firstName }}!
         <hr>
     {% endfor %}
 {% else %}
-    <p>No medications yet.</p>
+    <p>You have no medications.</p>
+    <a class="medication-link" href="{% url 'medication_entry:entry' %}">Log Medications Here</a>
 {% endif %}
-
-<a class="medication-link" href="{% url 'medication_entry:medication_list' %}">
-    View Full List
-</a>
 </div>
 
 {% endif %}

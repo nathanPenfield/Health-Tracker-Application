@@ -28,6 +28,9 @@ class MedicationListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Medication.objects.filter(user=self.request.user)
 
-def home(request):
-    meds = Medication.objects.filter(user=request.user) if request.user.is_authenticated else[]
-    return render(request, 'home.html', {'medications': meds})
+def HomeView(request: HttpRequest) -> HttpResponse:
+    context = {}
+    if request.user.is_authenticated:
+        meds = Medication.objects.filter(user=request.user)
+        context['meds'] = meds
+    return render(request, "home.html", context)

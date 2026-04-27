@@ -12,8 +12,6 @@
 
 {% if medications %}
 {% for med in medications %} <div> <h3>{{ med.name }}</h3>
-
-```
         <p><strong>Dosage:</strong> {{ med.dosage }}</p>
         <p><strong>Frequency:</strong> {{ med.frequency }}</p>
         <p><strong>Start Date:</strong> {{ med.start_date }}</p>
@@ -23,13 +21,12 @@
             <p><strong>Notes:</strong> {{ med.notes }}</p>
         {% endif %}
     </div>
-
     <hr>
 {% endfor %}
-```
 
 {% else %} 
-<p>No Medications Yet.</p>
+<p>You have no medications.</p>
+<a class="medication-link" href="{% url 'medication_entry:entry' %}">Log Medications Here</a>
 {% endif %}
 
 {% endblock %}

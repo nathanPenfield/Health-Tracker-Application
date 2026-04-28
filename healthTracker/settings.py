@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'medication_entry',
     'symptom_log',
+    'exercise',
 ]
 
 MIDDLEWARE = [

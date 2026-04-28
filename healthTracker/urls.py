@@ -22,6 +22,7 @@ urlpatterns = [
     path("accounts/", include("accounts.urls", namespace="accounts")),
     path('medication/', include("medication_entry.urls")),
     path('symptom_log/', include("symptom_log.urls")),
+    path('exercise/', include("exercise.urls")),
     path('admin/', admin.site.urls),
     path("", HomeView, name="home")
 ]

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Exercise List{% endblock %}
+
+{% block css %} 
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% if exercises %}
+{% for e in exercises %} <div> <h3>{{ e.name }}</h3>
+        <p><strong>Type:</strong> {{ e.type }}</p>
+        <p><strong>Date:</strong> {{ e.date }}</p>
+        {% if e.notes %}
+            <p><strong>Notes:</strong> {{ e.notes }}</p>
+        {% endif %}
+    </div>
+    <hr>
+{% endfor %}
+
+{% else %} 
+<p>You have no exercise.</p>
+<a class="medication-link" href="{% url 'exercise:entry' %}">Log Exercise Here</a>
+{% endif %}
+
+{% endblock %}

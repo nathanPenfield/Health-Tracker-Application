@@ -20,14 +20,14 @@
         {{ form.name.errors }}
     </div>
     <div class="form-pair">
-        <div class="form-description">Dosage</div>
-        {{ form.dosage }}
-        {{ form.dosage.errors }}
+        <div class="form-description">Dosage (mg)</div>
+        {{ form.dosage_mg }}
+        {{ form.dosage_mg.errors }}
     </div>
     <div class="form-pair">
-        <div class="form-description">Frequency</div>
-        {{ form.frequency }}
-        {{ form.frequency.errors }}
+        <div class="form-description">Times to Take (e.g., 09:00, 15:00, 20:00)</div>
+        {{ form.times }}
+        {{ form.times.errors }}
     </div>
     <div class="form-pair">
         <div class="form-description">Start Date</div>
@@ -35,16 +35,22 @@
         {{ form.start_date.errors }}
     </div>
     <div class="form-pair">
+        <div class="form-description">End Date (Optional)</div>
+        {{ form.end_date }}
+        {{ form.end_date.errors }}
+    </div>
+    <div class="form-pair">
         <div class="form-description">Notes</div>
         {{ form.notes }}
         {{ form.notes.errors }}
     </div>
     <div class="form-pair">
-        <div class="form-description">Refill Left</div>
+        <div class="form-description">Refills Remaining</div>
         {{ form.refill }}
         {{ form.refill.errors }}
     </div>
-    <button class="submit-button"type="submit">Save</button>
+
+    <button class="submit-button" type="submit">Save</button>
 </form>
 
 

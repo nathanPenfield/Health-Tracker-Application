@@ -6,6 +6,7 @@ from .models import Medication
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
+from django.utils import timezone
 
 @login_required
 def MedicationView(request: HttpRequest) -> HttpResponse:
@@ -36,10 +37,9 @@ def HomeView(request: HttpRequest) -> HttpResponse:
     if request.user.is_authenticated:
         meds = Medication.objects.filter(user=request.user)
         context['meds'] = meds
-        
-        current_time = datetime.now().strftime("%H:%M")  
-        current_hour = int(current_time[:2])-4    
-        current_min = int(current_time[3:])
+        now_local = timezone.localtime(timezone.now())
+        current_hour = now_local.hour   
+        current_min = now_local.minute
         for med in meds:
             if med.times:
                 for time in med.times:

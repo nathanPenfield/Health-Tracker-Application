@@ -34,6 +34,13 @@
                 <a href="{% url 'symptom_log:entry' %}">Add Symptom</a>
             </div>
         </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Exercise Log</a>
+            <div class="dropdown-content">
+                <a href="{% url 'exercise:entry' %}">Add Exercise</a>
+                <a href="{% url 'exercise:list' %}">View Exercises</a>
+            </div>
+        </li>
     </ul>
     <main>
         {% block content %}

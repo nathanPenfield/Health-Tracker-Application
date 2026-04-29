@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Exercise Entry{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/entry.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sympentry.css' %}">
+{% endblock %}
+{% block content %}
+<div class="entry-container">
+<h2>Enter Your Exercise Information</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="form-pair">
+        <div class="form-description">Exercise Name</div>
+        {{ form.name }}
+    </div>
+    <div class="form-pair">
+        <div class="form-description">Type of exercise</div>
+        {{ form.type }}
+    </div>
+    <div class="form-pair">
+        <div class="form-description">Date</div>
+        {{ form.date }}
+    </div>
+    <div class="form-pair">
+        <div class="form-description">Notes</div>
+        {{ form.notes }}
+    </div>
+    <button class="submit-button" type="submit">Log Exercise</button>
+</form>
+{% endblock %}
